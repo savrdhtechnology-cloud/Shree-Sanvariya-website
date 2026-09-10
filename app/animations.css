@@ -1,0 +1,53 @@
+/* Premium motion system — keeps the approved visual design intact */
+@keyframes pageIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes heroIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes floatSoft{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes floatSoftAlt{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(7px) rotate(1.5deg)}}
+@keyframes pulseSoft{0%,100%{box-shadow:0 0 0 0 rgba(23,167,99,0)}50%{box-shadow:0 0 0 9px rgba(23,167,99,.08)}}
+@keyframes ringDrift{0%,100%{transform:rotate(0deg) scale(1)}50%{transform:rotate(4deg) scale(1.015)}}
+@keyframes sheen{0%{transform:translateX(-140%) skewX(-20deg)}100%{transform:translateX(260%) skewX(-20deg)}}
+@keyframes cardIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+body{animation:pageIn .45s ease both}
+.header{animation:pageIn .35s ease both}
+.heroCopy{animation:heroIn .7s cubic-bezier(.2,.7,.2,1) .06s both}
+.heroVisual{animation:heroIn .8s cubic-bezier(.2,.7,.2,1) .16s both}
+.heroOrb{animation:floatSoft 6s ease-in-out infinite}
+.qualityCard{animation:floatSoftAlt 5.4s ease-in-out infinite}
+.capsuleA{animation:floatSoft 4.8s ease-in-out .2s infinite}
+.capsuleB{animation:floatSoft 5.2s ease-in-out .6s infinite}
+.capsuleC{animation:floatSoft 4.5s ease-in-out .9s infinite}
+.tabletA{animation:floatSoft 4.2s ease-in-out .4s infinite}
+.tabletB{animation:floatSoft 4.9s ease-in-out .7s infinite}
+.bottle{animation:floatSoftAlt 5.8s ease-in-out .25s infinite}
+.trustCard,.categoryCard,.valueCard,.profileCard,.hoursCard,.contactPanel,.ratingCard,.sitemapGrid a,.contactCard{animation:cardIn .55s ease both}
+.trustCard:nth-child(2),.categoryCard:nth-child(2),.valueCard:nth-child(2){animation-delay:.06s}
+.trustCard:nth-child(3),.categoryCard:nth-child(3),.valueCard:nth-child(3){animation-delay:.12s}
+.trustCard:nth-child(4),.categoryCard:nth-child(4),.valueCard:nth-child(4){animation-delay:.18s}
+.categoryCard:nth-child(5),.valueCard:nth-child(5){animation-delay:.24s}
+.categoryCard:nth-child(6),.valueCard:nth-child(6){animation-delay:.30s}
+.trustIcon,.valueCard>span{animation:pulseSoft 3.8s ease-in-out infinite}
+
+.btn,.navCta,.categoryCard,.valueCard,.profileCard,.hoursCard,.contactPanel,.ratingCard,.sitemapGrid a,.trustCard{transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease,background-color .28s ease}
+.btn,.navCta{position:relative;overflow:hidden}
+.btn:after,.navCta:after{content:"";position:absolute;inset:-40% auto -40% -30%;width:24%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);transform:translateX(-140%) skewX(-20deg)}
+.btn:hover:after,.navCta:hover:after{animation:sheen .75s ease}
+.btn:hover,.navCta:hover{transform:translateY(-2px)}
+.trustCard:hover,.categoryCard:hover,.valueCard:hover,.profileCard:hover,.hoursCard:hover,.contactPanel:hover,.ratingCard:hover,.sitemapGrid a:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(13,55,88,.13)}
+.categoryArt i,.categoryArt b{transition:transform .4s ease}
+.categoryCard:hover .categoryArt i{transform:rotate(-18deg) translateX(8px)}
+.categoryCard:hover .categoryArt b{transform:rotate(-31deg) translateX(-7px)}
+
+.pageHero{animation:heroIn .55s ease both}
+.pageHero:after{animation:ringDrift 8s ease-in-out infinite;transform-origin:center}
+.pageHeroInner .eyebrow{animation:heroIn .5s ease .05s both}
+.pageHeroInner h1{animation:heroIn .6s ease .10s both}
+.pageHeroInner p{animation:heroIn .6s ease .16s both}
+.innerGrid,.contactPageGrid,.reviewWrap,.sitemapGrid,.prose{animation:heroIn .62s ease .12s both}
+.aboutVisual:before{animation:ringDrift 9s ease-in-out infinite}
+.metricA{animation:floatSoft 5s ease-in-out infinite}
+.metricB{animation:floatSoftAlt 5.6s ease-in-out .5s infinite}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.001ms!important}
+}

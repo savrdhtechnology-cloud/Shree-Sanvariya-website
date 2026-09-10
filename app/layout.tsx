@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./pages.css";
 import "./animations.css";
+import "./product-cards.css";
 
 export const metadata: Metadata = {
   title: "Shree Sanvariya Seth Traders | Corporate Website",

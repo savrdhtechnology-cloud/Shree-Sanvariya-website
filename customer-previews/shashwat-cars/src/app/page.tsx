@@ -1,3 +1,4 @@
+import "./premium-home.css";
 import Link from "next/link";
 import { getVehicles } from "@/lib/db";
 import { VehicleCard } from "@/components/VehicleCard";

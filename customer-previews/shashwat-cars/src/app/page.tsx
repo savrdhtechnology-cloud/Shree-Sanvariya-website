@@ -1,4 +1,5 @@
 import "./premium-home.css";
+import "./inventory-premium.css";
 import Link from "next/link";
 import { getVehicles } from "@/lib/db";
 import { VehicleCard } from "@/components/VehicleCard";
@@ -27,7 +28,7 @@ export default async function Home(){
           <h1>Your Next Chapter <span>Drives Here.</span></h1>
           <p className="ht-sub">Buy, sell, or value your car with complete confidence. A premium pre-owned experience designed for Bhopal.</p>
           <div className="hero-actions"><Link className="btn btn-accent" href="/cars">Explore Our Cars →</Link><Link className="btn btn-ghost" href="/sell-your-car">Sell Your Car</Link></div>
-          <div className="ht-proof"><span>✓ Verified-style inventory</span><span>✓ Transparent process</span><span>✓ Personal assistance</span></div>
+          <div className="ht-proof"><span>✓ Dealer-managed inventory</span><span>✓ Transparent process</span><span>✓ Personal assistance</span></div>
         </div>
         <aside className="ht-valuation">
           <div className="ht-val-title"><span>▥</span><div><h2>Instant Car Valuation</h2><p>Get an approximate value range in seconds.</p></div></div>
@@ -40,7 +41,7 @@ export default async function Home(){
       <div className="ht-line"/>
     </section>
 
-    <section className="ht-stats"><div className="container ht-stats-grid"><div><strong>{cars.length}</strong><span>Demo Vehicles</span></div><div><strong>360°</strong><span>Digital Discovery</span></div><div><strong>1:1</strong><span>Personal Assistance</span></div><div><strong>Bhopal</strong><span>Local Dealership Focus</span></div></div></section>
+    <section className="ht-stats"><div className="container ht-stats-grid"><div><strong>{cars.length}</strong><span>Cars in Inventory</span></div><div><strong>360°</strong><span>Digital Discovery</span></div><div><strong>1:1</strong><span>Personal Assistance</span></div><div><strong>Bhopal</strong><span>Local Dealership Focus</span></div></div></section>
 
     <section className="ht-services"><div className="container ht-service-grid">{services.map(([icon,title,sub,href])=><Link key={title} className="ht-service" href={href}><span className="ht-service-icon">{icon}</span><h3>{title}</h3><p>{sub}</p><i>→</i></Link>)}</div></section>
 
@@ -53,7 +54,7 @@ export default async function Home(){
       ["04","Transfer","Complete agreed paperwork and next steps."],
     ].map(([n,t,d])=><div key={n} className="ht-step"><span>{n}</span><h3>{t}</h3><p>{d}</p></div>)}</div></section>
 
-    <section className="section container premium-featured"><div className="section-head"><div><p className="eyebrow">CURATED INVENTORY</p><h2>Featured cars.</h2><p className="muted">Representative demo listings for the customer preview.</p></div><Link href="/cars">View full collection →</Link></div>{featured.length?<div className="vehicle-grid">{featured.map(v=><VehicleCard key={v.id} vehicle={v}/>)}</div>:<div className="empty-state"><h3>Fresh inventory is being prepared.</h3><p>Production vehicles will appear here after dealership admin adds verified inventory.</p></div>}</section>
+    <section className="section home-featured"><div className="container"><div className="section-head"><div><p className="eyebrow">FEATURED BY SHASHWAT CARS</p><h2>Featured cars.</h2><p>Only vehicles marked “Featured on Home” in the admin panel appear here.</p></div><Link href="/cars">View all inventory →</Link></div>{featured.length?<div className="home-featured-grid">{featured.map(v=><VehicleCard key={v.id} vehicle={v}/>)}</div>:<div className="empty-state"><h3>No featured cars selected yet.</h3><p>Choose cars from Admin → Inventory and switch on “Featured on Home”.</p><Link href="/cars" className="btn btn-dark">Browse All Cars</Link></div>}</div></section>
 
     <section className="section section-dark premium-band"><div className="container trust-grid"><div><p className="eyebrow light">CONNECTED CAR JOURNEY</p><h2>Everything around the car, connected.</h2><p>Discover a car, request valuation, ask about finance, and arrange inspection or documentation support through one digital experience.</p><Link href="/contact" className="btn btn-accent">Talk to Shashwat Cars →</Link></div><div className="trust-card premium-process"><span>01</span><h3>Valuation</h3><p>Approximate estimate before inspection.</p><span>02</span><h3>Finance</h3><p>Eligibility remains subject to lender assessment.</p><span>03</span><h3>Inspection & Documents</h3><p>Physical verification and paperwork support.</p></div></div></section>
   </>;

@@ -5,6 +5,7 @@ import { VehicleCard } from "./VehicleCard";
 
 type Filters = { brand:string; model:string; fuel:string; transmission:string; minPrice:string; maxPrice:string; year:string; minKm:string; maxKm:string; bodyType:string; ownership:string; location:string; status:string; sort:string };
 const empty:Filters = { brand:"", model:"", fuel:"", transmission:"", minPrice:"", maxPrice:"", year:"", minKm:"", maxKm:"", bodyType:"", ownership:"", location:"", status:"", sort:"newest" };
+const quickTypes = ["","Sedan","Hatchback","SUV"] as const;
 
 export function CarsBrowser({ vehicles, initial = {} }: { vehicles: Vehicle[]; initial?: Partial<Filters> }) {
   const [f, setF] = useState<Filters>({ ...empty, ...initial });
@@ -14,7 +15,7 @@ export function CarsBrowser({ vehicles, initial = {} }: { vehicles: Vehicle[]; i
       (!f.brand || v.brand.toLowerCase().includes(f.brand.toLowerCase())) &&
       (!f.model || v.model.toLowerCase().includes(f.model.toLowerCase())) &&
       (!f.fuel || v.fuel === f.fuel) && (!f.transmission || v.transmission === f.transmission) &&
-      (!f.year || String(v.year) === f.year) && (!f.bodyType || v.bodyType === f.bodyType) &&
+      (!f.year || String(v.year) === f.year) && (!f.bodyType || v.bodyType.toLowerCase() === f.bodyType.toLowerCase()) &&
       (!f.ownership || v.ownership === f.ownership) && (!f.location || v.location === f.location) &&
       (!f.status || v.status === f.status) && (!f.minPrice || v.price >= Number(f.minPrice)) &&
       (!f.maxPrice || v.price <= Number(f.maxPrice)) && (!f.minKm || v.kmDriven >= Number(f.minKm)) &&
@@ -24,6 +25,7 @@ export function CarsBrowser({ vehicles, initial = {} }: { vehicles: Vehicle[]; i
   }, [vehicles, f]);
   const set = (k:keyof Filters) => (e:React.ChangeEvent<HTMLInputElement|HTMLSelectElement>) => setF({...f,[k]:e.target.value});
   const options = (key:keyof Vehicle) => Array.from(new Set(vehicles.map(v => String(v[key] || "")).filter(Boolean))).sort();
+  const typeCount = (type:string) => type ? vehicles.filter(v=>v.bodyType.toLowerCase()===type.toLowerCase()).length : vehicles.length;
   const filters = <>
     <div className="section-head"><h2>Filters</h2><button className="text-button" onClick={() => setF(empty)}>Reset</button></div>
     <label>Brand<input value={f.brand} onChange={set("brand")} placeholder="e.g. Hyundai" /></label>
@@ -39,8 +41,11 @@ export function CarsBrowser({ vehicles, initial = {} }: { vehicles: Vehicle[]; i
     <label>Availability<select value={f.status} onChange={set("status")}><option value="">All</option><option value="AVAILABLE">Available</option><option value="RESERVED">Reserved</option><option value="SOLD">Sold</option></select></label>
   </>;
   return <div className="inventory-wrap">
+    <div className="category-tabs" aria-label="Vehicle category filters">
+      {quickTypes.map(type=><button key={type||"all"} className={`category-tab ${f.bodyType===type?"active":""}`} onClick={()=>setF({...f,bodyType:type})}><span>{type==="Sedan"?"▰":type==="Hatchback"?"▱":type==="SUV"?"▣":"🚘"}</span>{type||"All Cars"}<small>{typeCount(type)}</small></button>)}
+    </div>
     <button className="btn btn-dark mobile-filter-button" onClick={() => setFiltersOpen(true)}>Filters & Search</button>
-    <div className="inventory-layout"><aside className="filters card desktop-filters">{filters}</aside><div><div className="inventory-toolbar"><strong>{filtered.length} cars found</strong><select value={f.sort} onChange={set("sort")}><option value="newest">Newest</option><option value="price-asc">Price Low to High</option><option value="price-desc">Price High to Low</option><option value="km-asc">KM Low to High</option></select></div>{filtered.length ? <div className="vehicle-grid">{filtered.map(v=><VehicleCard key={v.id} vehicle={v}/>)}</div> : <div className="empty-state"><h3>No cars match your current filters.</h3><p>Try changing your budget or search criteria.</p><button className="btn btn-dark" onClick={() => setF(empty)}>Clear Filters</button></div>}</div></div>
+    <div className="inventory-layout"><aside className="filters card desktop-filters">{filters}</aside><div><div className="inventory-toolbar"><strong>{filtered.length} cars found</strong><select value={f.sort} onChange={set("sort")}><option value="newest">Newest</option><option value="price-asc">Price Low to High</option><option value="price-desc">Price High to Low</option><option value="km-asc">KM Low to High</option></select></div>{filtered.length ? <div className="vehicle-grid">{filtered.map(v=><VehicleCard key={v.id} vehicle={v}/>)}</div> : <div className="empty-state"><h3>No cars match your current filters.</h3><p>Try another category, budget or search criteria.</p><button className="btn btn-dark" onClick={() => setF(empty)}>Clear Filters</button></div>}</div></div>
     {filtersOpen && <div className="filter-drawer-backdrop" onClick={() => setFiltersOpen(false)}><aside className="filter-drawer" onClick={e => e.stopPropagation()}><button className="drawer-close" onClick={() => setFiltersOpen(false)}>×</button>{filters}<button className="btn btn-accent" onClick={() => setFiltersOpen(false)}>Show {filtered.length} Cars</button></aside></div>}
   </div>;
 }

@@ -38,19 +38,23 @@
   </header>
 
   <main id="main">
-    <section class="hero">
-      <div class="container hero__grid">
-        <div class="hero__copy reveal">
-          <p class="eyebrow">SHREE SAWARIYA SETH TRADERS</p>
-          <h1>Quality Products for Every Home & Construction Need</h1>
-          <p class="hero__lead">Paints, Hardware, Sanitary & Plumbing and Electrical products — all under one roof.</p>
-          <div class="badges"><a href="#paints">PAINTS</a><a href="#hardware">HARDWARE</a><a href="#sanitary">SANITARY</a><a href="#electrical">ELECTRICAL</a></div>
-          <div class="hero__actions"><a class="btn btn--gold btn--lg" data-wa href="https://wa.me/919131204037" target="_blank" rel="noopener">WhatsApp Enquiry</a><a class="btn btn--ghost btn--lg" href="tel:+919131204037">Call Now</a></div>
-          <div class="hero__facts"><span>Wide product range</span><span>Quality-focused products</span><span>Easy enquiry</span></div>
-        </div>
-        <div class="hero__media reveal reveal--delay">
-          <img data-img="hero" alt="Hardware and building material store display" fetchpriority="high">
-          <div class="hero__note"><strong>Build better.</strong><span>Choose the right materials for your project.</span></div>
+    <section class="hero" aria-label="Shree Sawariya Seth Traders offers">
+      <div class="hero-slider" aria-roledescription="carousel" aria-label="Store offers" tabindex="0">
+        <article class="hero-slide is-active" data-slide="0" aria-hidden="false">
+          <img src="assets/banners/complete-range.webp" width="1983" height="793" alt="Shree Sawariya Seth Traders complete paints, hardware, sanitary, plumbing and electrical range" fetchpriority="high">
+        </article>
+        <article class="hero-slide" data-slide="1" aria-hidden="true">
+          <img src="assets/banners/store-range.webp" width="1945" height="808" alt="Shree Sawariya Seth Traders quality home and construction products" loading="lazy">
+        </article>
+        <div class="hero-slider__controls">
+          <div class="hero-slider__dots" role="tablist" aria-label="Choose banner">
+            <button class="hero-dot is-active" type="button" role="tab" aria-label="Show first banner" aria-selected="true" data-go="0"></button>
+            <button class="hero-dot" type="button" role="tab" aria-label="Show second banner" aria-selected="false" data-go="1"></button>
+          </div>
+          <div class="hero-slider__arrows">
+            <button class="hero-arrow hero-arrow--prev" type="button" aria-label="Previous banner">‹</button>
+            <button class="hero-arrow hero-arrow--next" type="button" aria-label="Next banner">›</button>
+          </div>
         </div>
       </div>
     </section>

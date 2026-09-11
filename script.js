@@ -81,7 +81,19 @@
   const hero = document.querySelector('.hero');
   const heroSlides = [
     {
+      key: 'products',
+      imageKey: 'showroom',
+      label: 'Complete Product Range',
+      title: 'Everything Your Project Needs, in One Place',
+      lead: 'Paints, hardware, sanitary & plumbing and electrical products for home improvement, renovation and construction requirements.',
+      badges: ['PAINTS','HARDWARE','SANITARY & PLUMBING','ELECTRICAL'],
+      noteTitle: 'Plan. Build. Finish.',
+      noteText: 'Explore essential products across four core categories.',
+      facts: ['Four core categories','Direct assistance','Easy enquiry']
+    },
+    {
       key: 'paints',
+      imageKey: 'paints',
       label: 'Paints',
       title: 'Premium Paints for Beautiful, Lasting Spaces',
       lead: 'Interior & exterior paints, wall finishing products, paint accessories, rollers and brushes for your project requirements.',
@@ -92,6 +104,7 @@
     },
     {
       key: 'hardware',
+      imageKey: 'hardware',
       label: 'Hardware',
       title: 'Reliable Hardware for Every Build & Repair',
       lead: 'Tools, fasteners, construction hardware and general hardware items for practical home, repair and building requirements.',
@@ -102,6 +115,7 @@
     },
     {
       key: 'sanitary',
+      imageKey: 'sanitary',
       label: 'Sanitary & Plumbing',
       title: 'Sanitary & Plumbing for Better Everyday Spaces',
       lead: 'Bathroom fittings, pipes & fittings, plumbing accessories and sanitary products — selected around real project needs.',
@@ -112,6 +126,7 @@
     },
     {
       key: 'electrical',
+      imageKey: 'electrical',
       label: 'Electrical',
       title: 'Electrical Essentials for Modern Homes & Projects',
       lead: 'Switches, wires & cables, lighting and electrical accessories for everyday home improvement and construction requirements.',
@@ -140,14 +155,14 @@
                 <div class="hero__facts">${s.facts.map((f) => `<span>${f}</span>`).join('')}</div>
               </div>
               <div class="hero__media">
-                <img data-img="${s.key}" alt="${s.label} products" ${index === 0 ? 'fetchpriority="high"' : 'loading="lazy"'}>
+                <img data-img="${s.imageKey}" alt="${s.label} products" ${index === 0 ? 'fetchpriority="high"' : 'loading="lazy"'}>
                 <div class="hero-slide__tag"><i></i>${s.label}</div>
                 <div class="hero__note"><strong>${s.noteTitle}</strong><span>${s.noteText}</span></div>
               </div>
             </div>
           </article>
         `).join('')}
-        <div class="hero-slider__counter" aria-hidden="true"><b>01</b><span>/ 04</span></div>
+        <div class="hero-slider__counter" aria-hidden="true"><b>01</b><span>/ ${String(heroSlides.length).padStart(2, '0')}</span></div>
         <div class="hero-slider__controls">
           <div class="hero-slider__dots" role="tablist" aria-label="Choose hero slide">
             ${heroSlides.map((s, index) => `<button class="hero-dot${index === 0 ? ' is-active' : ''}" type="button" role="tab" aria-label="Show ${s.label} slide" aria-selected="${index === 0 ? 'true' : 'false'}" data-go="${index}"></button>`).join('')}
@@ -254,24 +269,8 @@
   restartProgress();
   scheduleSlide();
 
-  const addressEl = document.getElementById('address');
-  if (addressEl && config.address) addressEl.textContent = config.address;
-
-  const mapFrame = document.getElementById('map-frame');
-  const mapPlaceholder = document.getElementById('map-placeholder');
-  const directions = document.getElementById('directions');
-  if (config.googleMapsEmbedUrl && mapFrame && mapPlaceholder) {
-    mapFrame.src = config.googleMapsEmbedUrl;
-    mapFrame.style.display = 'block';
-    mapPlaceholder.style.display = 'none';
-  }
-  if (config.googleMapsDirectionsUrl && directions) {
-    directions.href = config.googleMapsDirectionsUrl;
-    directions.classList.remove('disabled');
-    directions.removeAttribute('aria-disabled');
-    directions.target = '_blank';
-    directions.rel = 'noopener';
-  }
+  const locationMessage = document.getElementById('location-message');
+  if (locationMessage && config.locationMessage) locationMessage.textContent = config.locationMessage;
 
   const progress = document.createElement('div');
   progress.className = 'scroll-progress';
@@ -327,6 +326,40 @@
     link.target = '_blank';
     link.rel = 'noopener';
   });
+
+  /* Product search and category filters */
+  const productSearch = document.getElementById('product-search');
+  const productCards = [...document.querySelectorAll('.product[data-category]')];
+  const productFilters = [...document.querySelectorAll('.filter[data-filter]')];
+  const productEmpty = document.getElementById('product-empty');
+  let activeFilter = 'all';
+
+  const filterProducts = () => {
+    const query = String(productSearch?.value || '').trim().toLowerCase();
+    let visible = 0;
+    productCards.forEach((card) => {
+      const matchesCategory = activeFilter === 'all' || card.dataset.category === activeFilter;
+      const searchable = `${card.dataset.search || ''} ${card.textContent || ''}`.toLowerCase();
+      const matchesQuery = !query || searchable.includes(query);
+      const show = matchesCategory && matchesQuery;
+      card.hidden = !show;
+      if (show) visible += 1;
+    });
+    if (productEmpty) productEmpty.hidden = visible !== 0;
+  };
+
+  productFilters.forEach((button) => {
+    button.addEventListener('click', () => {
+      activeFilter = button.dataset.filter || 'all';
+      productFilters.forEach((item) => {
+        const active = item === button;
+        item.classList.toggle('active', active);
+        item.setAttribute('aria-pressed', String(active));
+      });
+      filterProducts();
+    });
+  });
+  productSearch?.addEventListener('input', filterProducts);
 
   const form = document.getElementById('enquiry-form');
   const status = document.getElementById('form-status');

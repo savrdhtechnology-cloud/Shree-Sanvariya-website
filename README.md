@@ -1,5 +1,5 @@
 # Shree Sanvariya Seth Traders Website
 
-Modern corporate website for Shree Sanvariya Seth Traders.
+Production-ready customer website for Shree Sawariya Seth Traders.
 
-Development work is maintained on the `feature/modern-redesign` branch before production approval.
+The current customer version is maintained on the `customer-preview/shree-sawariya-premium` branch. It includes responsive product browsing, category filters, WhatsApp enquiries, phone actions and accessible mobile navigation.

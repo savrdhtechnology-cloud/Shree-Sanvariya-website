@@ -1,0 +1,4 @@
+import Logo from "./Logo";
+import { company } from "@/lib/company";
+
+export default function Footer(){return <footer className="footer"><div className="container footerGrid"><div className="footerBrand"><Logo/><p>Professional pharmaceutical trading business based in Bhopal, Madhya Pradesh.</p></div><div><h3>Company</h3><a href="/about-us">About Us</a><a href="/testimonials">Testimonials</a><a href="/contact-us">Contact Us</a></div><div><h3>Information</h3><a href="/products">Product Information</a><a href="/site-map">Site Map</a><a href="/privacy-policy">Privacy Policy</a><a href="/terms-and-conditions">Terms & Conditions</a></div><div><h3>Contact</h3><p>{company.city}</p><a href={`mailto:${company.email}`}>{company.email}</a><p>GST: {company.gst}</p></div></div><div className="container footerBottom"><span>© 2026 {company.name}. All Rights Reserved.</span><span>Corporate informational website</span></div></footer>}

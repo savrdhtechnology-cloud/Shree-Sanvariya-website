@@ -1,0 +1,1 @@
+import Link from "next/link";export default function NotFound(){return <section className="section container narrow empty-state"><h1>404</h1><h2>We could not find that page.</h2><p>The vehicle may have been removed or the link may be incorrect.</p><Link className="btn btn-dark" href="/cars">Browse Cars</Link></section>}

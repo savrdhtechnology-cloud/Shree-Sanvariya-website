@@ -1,0 +1,1 @@
+import { AdminInventory } from "@/components/AdminInventory";import { getVehicles } from "@/lib/db";export default async function Page(){return <><div className="admin-head"><div><p className="eyebrow">INVENTORY</p><h1>Vehicle Management</h1></div></div><AdminInventory initial={await getVehicles({includeHidden:true})}/></>}

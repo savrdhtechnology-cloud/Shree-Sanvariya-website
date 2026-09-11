@@ -5,7 +5,9 @@ window.BUSINESS_CONFIG = {
   phonePrimary: "9131204037",
   phoneSecondary: "9754665479",
   whatsappNumber: "919131204037",
-  locationMessage: "Call or WhatsApp us for the shop location and directions.",
+  address: "143/2, GNT Market, Dhar Road, Indore - 452002, Madhya Pradesh, India",
+  mapLink: "https://maps.app.goo.gl/CAVEysQYvk2bh63n7",
+  locationMessage: "143/2, GNT Market, Dhar Road, Indore - 452002, Madhya Pradesh, India",
   logo: "assets/logo.svg",
   images: {
     showroom: "assets/showroom-hero.webp",

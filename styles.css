@@ -178,8 +178,15 @@ button,a{-webkit-tap-highlight-color:transparent}
 .about__media{position:relative}
 .about__media::before{content:'';position:absolute;left:-18px;top:-18px;width:42%;height:42%;border:1px solid rgba(208,161,70,.42);border-radius:25px;z-index:-1}
 .about__media::after{content:'';position:absolute;right:-18px;bottom:-18px;width:35%;height:35%;background:linear-gradient(135deg,rgba(208,161,70,.16),rgba(121,21,33,.10));border-radius:24px;z-index:-1}
-.about__media img{width:100%;aspect-ratio:1.14;object-fit:cover;border-radius:28px;box-shadow:var(--shadow-md);background:var(--cream-150);transition:transform .6s var(--ease),filter .6s ease}
-.about__media:hover img{transform:scale(1.018);filter:saturate(1.04)}
+.about__visual-frame{position:relative;isolation:isolate;overflow:hidden;aspect-ratio:4/3;border-radius:28px;background:var(--cream-150);box-shadow:var(--shadow-md)}
+.about__visual-frame::after{content:'';position:absolute;z-index:2;inset:-35% auto -35% -45%;width:26%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.32),transparent);transform:rotate(12deg);animation:shopShine 8s ease-in-out infinite;pointer-events:none}
+.about__shop-image{width:100%;height:100%;object-fit:cover;object-position:center;animation:shopBreath 10s var(--ease) infinite alternate;will-change:transform,filter}
+.about__media:hover .about__shop-image{filter:saturate(1.08) contrast(1.02)}
+.about__logo-badge{position:absolute;z-index:3;left:18px;top:18px;width:min(48%,260px);padding:10px 13px;border:1px solid rgba(255,255,255,.65);border-radius:14px;background:rgba(255,253,249,.88);backdrop-filter:blur(10px);box-shadow:0 12px 30px rgba(33,9,12,.18);animation:shopBadgeFloat 4.5s ease-in-out infinite}
+.about__logo-badge img{display:block;width:100%;height:auto}
+@keyframes shopBreath{from{transform:scale(1.01)}to{transform:scale(1.065);filter:saturate(1.05)}}
+@keyframes shopShine{0%,68%{transform:translateX(0) rotate(12deg);opacity:0}74%{opacity:1}100%{transform:translateX(650%) rotate(12deg);opacity:0}}
+@keyframes shopBadgeFloat{50%{transform:translateY(-5px);box-shadow:0 18px 36px rgba(33,9,12,.22)}}
 .about__media span{position:absolute;left:28px;right:-28px;bottom:-22px;padding:16px 19px;border-radius:13px;background:linear-gradient(135deg,var(--burgundy-950),var(--burgundy-800));color:#fff;font-size:10px;font-weight:900;letter-spacing:.11em;box-shadow:var(--shadow-sm);border:1px solid rgba(255,255,255,.10)}
 .about__copy p{color:var(--muted);font-size:15px;line-height:1.8}
 .about__copy .btn{margin-top:11px}

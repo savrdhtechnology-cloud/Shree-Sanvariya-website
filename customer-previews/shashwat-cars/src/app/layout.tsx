@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import "./home-photos.css";
 import "./luxury-tech.css";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Footer } from "@/components/Footer";

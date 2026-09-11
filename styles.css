@@ -238,7 +238,7 @@ button,a{-webkit-tap-highlight-color:transparent}
 .footer{position:relative;overflow:hidden;padding:62px 0 25px;background:linear-gradient(145deg,#250308,#4c0811);color:#fff}
 .footer::before{content:'';position:absolute;width:380px;height:380px;border-radius:50%;right:-180px;top:-190px;border:1px solid rgba(240,217,159,.08);box-shadow:0 0 0 70px rgba(240,217,159,.02),0 0 0 140px rgba(240,217,159,.012)}
 .footer__grid{position:relative;display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:50px}
-.footer__brand img{max-width:270px;filter:brightness(0) invert(1);opacity:.94}
+.footer__brand img{display:block;width:min(100%,310px);height:auto;border-radius:14px;opacity:1;box-shadow:0 12px 30px rgba(0,0,0,.2)}
 .footer__brand p{max-width:330px;color:rgba(255,255,255,.60);font-size:12px}
 .footer h3{margin:0 0 15px;color:var(--gold-300);font-size:11px;letter-spacing:.11em;text-transform:uppercase}
 .footer__grid>div:not(.footer__brand){display:flex;flex-direction:column;align-items:flex-start}

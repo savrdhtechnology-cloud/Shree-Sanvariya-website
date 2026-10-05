@@ -3,17 +3,12 @@ import "./globals.css";
 import "./pages.css";
 import "./animations.css";
 import "./product-cards.css";
+import "./allino.css";
 
 export const metadata: Metadata = {
-  title: "Shree Sanvariya Seth Traders | Corporate Website",
-  description: "Official corporate information website of Shree Sanvariya Seth Traders, Bhopal, Madhya Pradesh.",
-  metadataBase: new URL("https://www.shreesanvariya.co.in"),
-  openGraph: {
-    title: "Shree Sanvariya Seth Traders",
-    description: "Professional pharmaceutical trading company profile and corporate information.",
-    type: "website",
-    url: "https://www.shreesanvariya.co.in",
-  },
+  title: "ALLINO FOODS & RESTAURANTS | One Destination for Great Food",
+  description: "Discover food, restaurants, home chefs, cloud kitchens and premium food products with Allino.",
+  openGraph: { title: "ALLINO FOODS & RESTAURANTS", description: "One destination for great food.", type: "website" }
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

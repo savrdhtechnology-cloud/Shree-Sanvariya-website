@@ -1,23 +1,7 @@
-# Shree Sanvariya Seth Traders — Modern Website
+# ALLINO FOODS & RESTAURANTS — Premium Homepage Preview
 
-Premium responsive corporate website built with Next.js + TypeScript.
+A premium cinematic food marketplace homepage built with Next.js, TypeScript and Framer Motion.
 
-## Safety / compliance scope
+Preview branch: `feature/allino-premium-homepage`.
 
-This version is intentionally informational. It does not provide online medicine checkout, prescription fulfilment, medicine-specific bulk ordering, controlled-drug ordering, or direct purchase flows.
-
-## Development
-
-```bash
-npm install
-npm run dev
-```
-
-## Production
-
-```bash
-npm run build
-npm start
-```
-
-Development branch: `feature/modern-redesign`.
+This branch preserves the existing repository structure while replacing only the homepage experience and related presentation dependencies.
